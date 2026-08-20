@@ -10,33 +10,80 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AQuienAtendemosRouteImport } from './routes/a-quien-atendemos'
+import { Route as ContactoRouteImport } from './routes/contacto'
+import { Route as FormacionRouteImport } from './routes/formacion'
+import { Route as InstitucionalRouteImport } from './routes/institucional'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AQuienAtendemosRoute = AQuienAtendemosRouteImport.update({
+  id: '/a-quien-atendemos',
+  path: '/a-quien-atendemos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactoRoute = ContactoRouteImport.update({
+  id: '/contacto',
+  path: '/contacto',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FormacionRoute = FormacionRouteImport.update({
+  id: '/formacion',
+  path: '/formacion',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InstitucionalRoute = InstitucionalRouteImport.update({
+  id: '/institucional',
+  path: '/institucional',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/a-quien-atendemos': typeof AQuienAtendemosRoute
+  '/contacto': typeof ContactoRoute
+  '/formacion': typeof FormacionRoute
+  '/institucional': typeof InstitucionalRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/a-quien-atendemos': typeof AQuienAtendemosRoute
+  '/contacto': typeof ContactoRoute
+  '/formacion': typeof FormacionRoute
+  '/institucional': typeof InstitucionalRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/a-quien-atendemos': typeof AQuienAtendemosRoute
+  '/contacto': typeof ContactoRoute
+  '/formacion': typeof FormacionRoute
+  '/institucional': typeof InstitucionalRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    '/' | '/a-quien-atendemos' | '/contacto' | '/formacion' | '/institucional'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/a-quien-atendemos' | '/contacto' | '/formacion' | '/institucional'
+  id:
+    | '__root__'
+    | '/'
+    | '/a-quien-atendemos'
+    | '/contacto'
+    | '/formacion'
+    | '/institucional'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AQuienAtendemosRoute: typeof AQuienAtendemosRoute
+  ContactoRoute: typeof ContactoRoute
+  FormacionRoute: typeof FormacionRoute
+  InstitucionalRoute: typeof InstitucionalRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +95,43 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/a-quien-atendemos': {
+      id: '/a-quien-atendemos'
+      path: '/a-quien-atendemos'
+      fullPath: '/a-quien-atendemos'
+      preLoaderRoute: typeof AQuienAtendemosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contacto': {
+      id: '/contacto'
+      path: '/contacto'
+      fullPath: '/contacto'
+      preLoaderRoute: typeof ContactoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/formacion': {
+      id: '/formacion'
+      path: '/formacion'
+      fullPath: '/formacion'
+      preLoaderRoute: typeof FormacionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/institucional': {
+      id: '/institucional'
+      path: '/institucional'
+      fullPath: '/institucional'
+      preLoaderRoute: typeof InstitucionalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AQuienAtendemosRoute: AQuienAtendemosRoute,
+  ContactoRoute: ContactoRoute,
+  FormacionRoute: FormacionRoute,
+  InstitucionalRoute: InstitucionalRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
