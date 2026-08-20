@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { MapPin, MessageCircle, Phone } from "lucide-react";
 import logo from "@/assets/logo-fundacion.png.asset.json";
 
 export function Footer() {
@@ -35,19 +35,27 @@ export function Footer() {
 
         <div>
           <h3 className="text-sm font-semibold text-foreground">Contacto</h3>
-          {/* TODO: reemplazar datos de contacto placeholder por los definitivos */}
           <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
             <li className="flex items-start gap-2">
               <MapPin className="mt-0.5 size-4 shrink-0 text-primary" />
-              Ciudad de Córdoba, Argentina (dirección a confirmar)
+              27 de abril 616, Córdoba, Argentina (5000)
             </li>
             <li className="flex items-start gap-2">
               <Phone className="mt-0.5 size-4 shrink-0 text-primary" />
-              +54 351 000 0000 (placeholder)
+              <a href="tel:+5493516716580" className="hover:text-primary">
+                +54 9 351 671-6580
+              </a>
             </li>
             <li className="flex items-start gap-2">
-              <Mail className="mt-0.5 size-4 shrink-0 text-primary" />
-              contacto@porunmundomejor.org (placeholder)
+              <MessageCircle className="mt-0.5 size-4 shrink-0 text-primary" />
+              <a
+                href="https://wa.me/5493516716580"
+                target="_blank"
+                rel="noreferrer"
+                className="hover:text-primary"
+              >
+                WhatsApp: consultas y turnos
+              </a>
             </li>
           </ul>
         </div>
