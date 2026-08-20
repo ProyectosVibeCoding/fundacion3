@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AQuienAtendemosRouteImport } from './routes/a-quien-atendemos'
+import { Route as ContactoRouteImport } from './routes/contacto'
 import { Route as FormacionRouteImport } from './routes/formacion'
 import { Route as InstitucionalRouteImport } from './routes/institucional'
 
@@ -22,6 +23,11 @@ const IndexRoute = IndexRouteImport.update({
 const AQuienAtendemosRoute = AQuienAtendemosRouteImport.update({
   id: '/a-quien-atendemos',
   path: '/a-quien-atendemos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactoRoute = ContactoRouteImport.update({
+  id: '/contacto',
+  path: '/contacto',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FormacionRoute = FormacionRouteImport.update({
@@ -38,12 +44,14 @@ const InstitucionalRoute = InstitucionalRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/a-quien-atendemos': typeof AQuienAtendemosRoute
+  '/contacto': typeof ContactoRoute
   '/formacion': typeof FormacionRoute
   '/institucional': typeof InstitucionalRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/a-quien-atendemos': typeof AQuienAtendemosRoute
+  '/contacto': typeof ContactoRoute
   '/formacion': typeof FormacionRoute
   '/institucional': typeof InstitucionalRoute
 }
@@ -51,20 +59,29 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/a-quien-atendemos': typeof AQuienAtendemosRoute
+  '/contacto': typeof ContactoRoute
   '/formacion': typeof FormacionRoute
   '/institucional': typeof InstitucionalRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/a-quien-atendemos' | '/formacion' | '/institucional'
+  fullPaths:
+    '/' | '/a-quien-atendemos' | '/contacto' | '/formacion' | '/institucional'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/a-quien-atendemos' | '/formacion' | '/institucional'
-  id: '__root__' | '/' | '/a-quien-atendemos' | '/formacion' | '/institucional'
+  to: '/' | '/a-quien-atendemos' | '/contacto' | '/formacion' | '/institucional'
+  id:
+    | '__root__'
+    | '/'
+    | '/a-quien-atendemos'
+    | '/contacto'
+    | '/formacion'
+    | '/institucional'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AQuienAtendemosRoute: typeof AQuienAtendemosRoute
+  ContactoRoute: typeof ContactoRoute
   FormacionRoute: typeof FormacionRoute
   InstitucionalRoute: typeof InstitucionalRoute
 }
@@ -83,6 +100,13 @@ declare module '@tanstack/react-router' {
       path: '/a-quien-atendemos'
       fullPath: '/a-quien-atendemos'
       preLoaderRoute: typeof AQuienAtendemosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contacto': {
+      id: '/contacto'
+      path: '/contacto'
+      fullPath: '/contacto'
+      preLoaderRoute: typeof ContactoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/formacion': {
@@ -105,6 +129,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AQuienAtendemosRoute: AQuienAtendemosRoute,
+  ContactoRoute: ContactoRoute,
   FormacionRoute: FormacionRoute,
   InstitucionalRoute: InstitucionalRoute,
 }
